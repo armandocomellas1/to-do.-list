@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-To Do list: list structure
+To Do list: add & remove
 
 > Hi there! This project is based on creating a UI list with webpack packages
 
