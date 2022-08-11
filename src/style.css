@@ -1,11 +1,10 @@
 * {
   margin: 0;
   padding: 0;
-  caret-color: black !important;
 }
 
-body {
-  background-color: rgb(246, 246,246);
+html {
+  background-color: rgb(246, 246, 246);
 }
 
 .container {
@@ -46,29 +45,29 @@ body {
   justify-content: space-between;
 }
 
-.container .img_list {
-  display: flex;
-  background-image: url('./key.svg');
-  background-repeat: no-repeat, repeat;
-  background-position: center;
-  width: 1rem;
-  height: 1rem;
-  padding-right: 2rem;
-  border-bottom: 1px solid rgb(242, 242, 242);
-  height: 47px;
-}
-
 .container .input_t {
   padding: 1rem 1rem;
   border: none;
   border-bottom: 1px solid rgb(242, 242, 242);
   width: 100%;
+  outline: none;
+}
+
+.container .add_list .img_list {
+  background-image: url('./key.svg');
+  background-repeat: no-repeat, repeat;
+  background-position: center;
+  padding-right: 3rem;
+  border-bottom: 1px solid rgb(242, 242, 242);
+  height: 47px;
 }
 
 .container .rows {
   display: flex;
   justify-content: space-between;
   padding: 1rem 1rem;
+  border-bottom: 1px solid rgb(242, 242, 242);
+  height: 30px;
 }
 
 .container .list {
@@ -78,9 +77,23 @@ body {
 
 .container .list p {
   padding-left: 10px;
+  outline: none;
+  width: 300px;
 }
 
-.container .points {
+.container .point {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20%;
+  align-items: flex-end;
+}
+
+.container .point:hover {
+  cursor: move;
+}
+
+.container .point > div {
   width: 6px;
   height: 6px;
   background: #000;
@@ -91,15 +104,27 @@ body {
   opacity: 0.5;
 }
 
-.container .point:hover {
-  cursor: move;
+.container .point:hover .points {
+  background: #000;
+  opacity: 0.9;
+}
+
+.container .delete_img {
+  display: none;
+  background-image: url('./delete.svg');
+  background-repeat: no-repeat, repeat;
+  background-position: center;
+  background-size: 100%;
+  width: 1rem;
+  padding-right: 0.5rem;
 }
 
 .container .footer {
   padding: 1rem 0;
   border-bottom: 1px solid rgb(242, 242, 242);
   text-align: center;
-  background-color: rgb(246, 246,246);
+  background-color: rgb(246, 246, 246);
   color: rgb(180, 180, 180);
   font-size: 1.2rem;
+  border: none;
 }
