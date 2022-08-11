@@ -79,14 +79,12 @@ function addTask() {
 function orderList() {
   const ggetCount = document.getElementById('list_row');
   const arrayGrow = ggetCount.childElementCount;
-  console.log('arrayGrow', arrayGrow);
   for (let i = 0; i < arrayGrow; i += 1) {
     document.getElementsByClassName('rows')[i].className = `rows ${i}`;
   }
 }
 
 const displayMenu = ((getIndiv) => {
-  console.log('displayMenu', getIndiv);
   const transform = getIndiv.split(' ');
   const numSelect = Number(transform[1]);
   document.getElementsByClassName('point')[numSelect].style.display = 'none';
@@ -100,7 +98,6 @@ const deleteMenu = ((getIndiv) => {
   if (getIndiv !== undefined) {
     const transform = getIndiv.split(' ');
     const numSelect = transform[1];
-    console.log('deleteMenu', getIndiv);
     document.getElementsByClassName(numSelect)[0].remove();
     orderList();
   }
