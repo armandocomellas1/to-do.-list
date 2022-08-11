@@ -1,50 +1,33 @@
 // import _ from 'lodash';
 import './style.css';
 
-let countStart = 0;
-const arrayList = [
-  {
-    description: 'wash the dishes',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'complete To Do list project',
-    completed: false,
-    index: 1,
-  },
-];
-
+const arrayList = [];
 const getPrincial = document.getElementById('list_row');
 
-arrayList.forEach((elem) => {
-  const dataStruct = `
-    <div class="list">
-      <input type="checkbox">
-      <p class="editable">${elem.description}</p>
-    </div>
-    <div class="point" onclick="displayMenu()">
-      <div class="points"></div>
-      <div class="points"></div>
-      <div class="points"></div>
-    </div>
-    <div class="delete_img">
-      <div class="pointv"></div>
-      <div class="pointv"></div>
-      <div class="pointv"></div>
-    </div>
-  `;
-  const createDiv = document.createElement('div');
-  createDiv.classList.add('rows');
-  createDiv.classList.add(elem.index);
-  createDiv.innerHTML = dataStruct;
-  getPrincial.appendChild(createDiv);
+const editElement = ((checkEvent) => {
+  const storeData = document.getElementsByClassName(checkEvent)[0];
+  storeData.getElementsByClassName('point')[0].style.display = 'none';
+  storeData.getElementsByClassName('delete_img')[0].style.display = 'flex';
+  storeData.getElementsByClassName('editable')[0].contentEditable = true;
+  storeData.getElementsByClassName('editable')[0].focus();
+  storeData.style.backgroundColor = 'rgb(231, 230, 177)';
+});
+
+const deleteElement = ((checkEvent) => {
+  let keyCode = checkEvent.split(' ')[1];
+  keyCode -= 1;
+  arrayList.splice(keyCode, 1);
+  document.getElementsByClassName(checkEvent)[0].remove();
+  localStorage.setItem('List', JSON.stringify(arrayList));
 });
 
 function addTask() {
   const getList = document.getElementsByClassName('input_t')[0].value;
   const ggetCount = document.getElementById('list_row');
-  const arrayGrow = ggetCount.childElementCount;
+  let arrayGrow = ggetCount.childElementCount;
+  if (arrayGrow <= 0) {
+    arrayGrow = 1;
+  }
   const newObject = {
     description: getList,
     completed: false,
@@ -60,7 +43,7 @@ function addTask() {
       <div class="points"></div>
       <div class="points"></div>
     </div>
-    <div class="delete_img">
+    <div class="delete_img" id="list_del">
       <div class="pointv"></div>
       <div class="pointv"></div>
       <div class="pointv"></div>
@@ -72,76 +55,30 @@ function addTask() {
   createDiv.innerHTML = dataStruct;
   getPrincial.appendChild(createDiv);
   arrayList.push(newObject);
+  localStorage.setItem('List', JSON.stringify(arrayList));
   document.getElementsByClassName('input_t')[0].value = '';
-  countStart += 1;
 }
 
-function orderList() {
-  const ggetCount = document.getElementById('list_row');
-  const arrayGrow = ggetCount.childElementCount;
-  for (let i = 0; i < arrayGrow; i += 1) {
-    document.getElementsByClassName('rows')[i].className = `rows ${i}`;
-  }
-}
-
-const displayMenu = ((getIndiv) => {
-  const transform = getIndiv.split(' ');
-  const numSelect = Number(transform[1]);
-  document.getElementsByClassName('point')[numSelect].style.display = 'none';
-  document.getElementsByClassName('delete_img')[numSelect].style.display = 'flex';
-  document.getElementsByClassName('editable')[numSelect].contentEditable = true;
-  document.getElementsByClassName('editable')[numSelect].focus();
-  document.getElementsByClassName('rows')[numSelect].style.backgroundColor = 'rgb(231, 230, 177)';
-});
-
-const deleteMenu = ((getIndiv) => {
-  if (getIndiv !== undefined) {
-    const transform = getIndiv.split(' ');
-    const numSelect = transform[1];
-    document.getElementsByClassName(numSelect)[0].remove();
-    orderList();
+document.getElementById('list_row').addEventListener('click', (event) => {
+  if (arrayList.length > 0) {
+    const checkEvent = event.target.parentElement.className;
+    const splitArr = checkEvent.split(' ');
+    const getCharAt = splitArr[0];
+    if (getCharAt === 'rows') {
+      editElement(checkEvent);
+    }
   }
 });
 
-// Logic to show the points select
-const checkPoint = (() => {
-  const anotherDiv = document.getElementById('list_row');
-  const elementsPoint = anotherDiv.getElementsByClassName('point');
-  for (let i = 0; i < elementsPoint.length; i += 1) {
-    const getPointEl = elementsPoint[i];
-    getPointEl.addEventListener('click', (e) => {
-      if (e.type === 'click' && e.target.className === 'point') {
-        const checkEventPoint = e.target.parentElement.className;
-        displayMenu(checkEventPoint);
-        e.preventDefault();
-      }
-    });
-  }
-});
-// Logic to show delete menu
-const checkDelete = (() => {
-  const docs = document.getElementById('list_row');
-  const elements = docs.getElementsByClassName('delete_img');
-  for (let i = 0; i < elements.length; i += 1) {
-    const getPoint = elements[i];
-    getPoint.addEventListener('click', (e) => {
-      if (e.type === 'click' && e.target.className === 'delete_img') {
-        const checkEvent = e.target.parentElement.className;
-        deleteMenu(checkEvent);
-        e.preventDefault();
-      }
-    });
-  }
-});
-document.addEventListener('DOMSubtreeModified', () => {
-  if (countStart > 0) {
-    checkPoint();
-  }
-});
-
-document.addEventListener('DOMSubtreeModified', () => {
-  if (countStart > 0) {
-    checkDelete();
+document.getElementById('list_row').addEventListener('click', (event) => {
+  if (arrayList.length > 0) {
+    const checkEvent = event.target.parentElement.className;
+    const checkIcon = event.target.className;
+    const splitArr = checkEvent.split(' ');
+    const getCharAt = splitArr[0];
+    if (getCharAt === 'rows' && checkIcon === 'delete_img') {
+      deleteElement(checkEvent);
+    }
   }
 });
 // document.getElementsByClassName('input_t')[0].addEventListener('focusout', addTask);
@@ -150,5 +87,27 @@ document.getElementsByClassName('input_t')[0].addEventListener('keypress', (even
   if (keyCode === 13) {
     // call click function of the buttonn
     addTask();
+  }
+});
+
+document.getElementById('list_row').addEventListener('click', (event) => {
+  if (arrayList.length > 0) {
+    const checkEvent = event.target.parentElement.className;
+    const splitArr = checkEvent.split(' ');
+    const getCharAt = splitArr[1];
+    const valdiateErr = document.getElementsByClassName(checkEvent)[0];
+    if (valdiateErr !== undefined) {
+      document.getElementsByClassName(checkEvent)[0].addEventListener('keypress', (event) => {
+        const keyCode = event.keyCode ? event.keyCode : event.which;
+        if (keyCode === 13) {
+          // call click function of the buttonn
+          document.getElementsByClassName(checkEvent)[0].getElementsByClassName('editable')[0].contentEditable = false;
+          document.getElementsByClassName(checkEvent)[0].getElementsByClassName('editable')[0].blur();
+          document.getElementsByClassName('point')[getCharAt].style.display = 'flex';
+          document.getElementsByClassName('delete_img')[getCharAt].style.display = 'none';
+          document.getElementsByClassName(checkEvent)[0].style.backgroundColor = 'rgb(255, 255, 255)';
+        }
+      });
+    }
   }
 });
