@@ -4,7 +4,7 @@
 }
 
 html {
-  background-color: rgb(246, 246,246);
+  background-color: rgb(246, 246, 246);
 }
 
 .container {
@@ -123,7 +123,7 @@ html {
   padding: 1rem 0;
   border-bottom: 1px solid rgb(242, 242, 242);
   text-align: center;
-  background-color: rgb(246, 246,246);
+  background-color: rgb(246, 246, 246);
   color: rgb(180, 180, 180);
   font-size: 1.2rem;
   border: none;
