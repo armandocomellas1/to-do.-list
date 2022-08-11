@@ -13,7 +13,9 @@
   "rules": {
     "no-shadow": "off",
     "no-param-reassign": "off",
-    "eol-last": "off"
+    "eol-last": "off",
+    "no-restricted-syntax": ["error", "FunctionExpression",
+    "WithStatement", "BinaryExpression[operator='in']"]
   },
   "ignorePatterns": [
     "dist/",
