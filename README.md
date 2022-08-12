@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-To Do list: add & remove
+To Do list: interactive list
 
 > Hi there! This project is based on creating a UI list with webpack packages
 
@@ -17,6 +17,10 @@ To Do list: add & remove
 - JAVASCRIPT
 - WEBPACK
 - (Used Lighthouse, Webhint, and Stylelint as linters)
+
+## Output expecting
+
+- Add/remove/edit/clear lists.
 
 ## Live Demo
 

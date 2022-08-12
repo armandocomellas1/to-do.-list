@@ -128,3 +128,8 @@ html {
   font-size: 1.2rem;
   border: none;
 }
+
+.container .footer:hover {
+  text-decoration: underline;
+  color: #000;
+}

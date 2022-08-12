@@ -1,5 +1,6 @@
 // import _ from 'lodash';
 import './style.css';
+import status from './check';
 
 const arrayList = [];
 const getPrincial = document.getElementById('list_row');
@@ -42,7 +43,7 @@ function addTask() {
   };
   const dataStruct = `
     <div class="list">
-      <input type="checkbox">
+      <input class="select" type="checkbox">
       <p class="editable">${newObject.description}</p>
     </div>
     <div class="point">
@@ -50,7 +51,7 @@ function addTask() {
       <div class="points"></div>
       <div class="points"></div>
     </div>
-    <div class="delete_img" id="list_del">
+    <div class="delete_img">
       <div class="pointv"></div>
       <div class="pointv"></div>
       <div class="pointv"></div>
@@ -120,6 +121,45 @@ document.getElementById('list_row').addEventListener('click', (event) => {
   }
 });
 
+document.getElementById('unique').addEventListener('click', () => {
+  const getDataLocal = localStorage.getItem('List');
+  const parseLocalSt = JSON.parse(getDataLocal);
+  const fileredData = parseLocalSt.filter((data) => data.completed !== true);
+  let dataToEr = parseLocalSt.filter((data) => data.completed === true);
+  let resCount = 1;
+  fileredData.forEach((ind) => {
+    ind.index = resCount;
+    resCount += 1;
+  });
+  localStorage.setItem('List', JSON.stringify(fileredData));
+  const getListAll = document.getElementById('list_row').childElementCount;
+  let reCount = 0;
+  for (let i = 0; i < getListAll; i += 1) {
+    const getOne = document.getElementById('list_row').childNodes[reCount].childNodes[1].childNodes[1];
+    const another = getOne.checked;
+    if (another === true) {
+      if (i === 0) {
+        reCount = 0;
+      } else {
+        document.getElementById('list_row').childNodes[reCount].remove();
+        reCount = 1;
+      }
+    } else {
+      reCount += 1;
+    }
+  }
+
+  if (getListAll <= 1) {
+    const getOne = document.getElementById('list_row').childNodes[0].childNodes[1].childNodes[1];
+    const another = getOne.checked;
+    if (another === true) {
+      document.getElementById('list_row').childNodes[0].remove();
+    }
+  }
+});
+
+document.body.addEventListener('click', status(), true);
+
 window.onload = (() => {
   const getDataLocal = localStorage.getItem('List');
   const transformData = JSON.parse(getDataLocal);
@@ -127,7 +167,7 @@ window.onload = (() => {
     transformData.forEach((elem) => {
       const dataStruct = `
         <div class="list">
-          <input type="checkbox">
+          <input class="select" type="checkbox">
           <p class="editable">${elem.description}</p>
         </div>
         <div class="point">
