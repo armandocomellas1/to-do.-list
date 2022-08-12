@@ -18,6 +18,11 @@ const deleteElement = ((checkEvent) => {
   keyCode -= 1;
   arrayList.splice(keyCode, 1);
   document.getElementsByClassName(checkEvent)[0].remove();
+  let resCount = 1;
+  arrayList.forEach((ind) => {
+    ind.index = resCount;
+    resCount += 1;
+  });
   localStorage.setItem('List', JSON.stringify(arrayList));
 });
 
@@ -27,6 +32,8 @@ function addTask() {
   let arrayGrow = ggetCount.childElementCount;
   if (arrayGrow <= 0) {
     arrayGrow = 1;
+  } else {
+    arrayGrow = ggetCount.childElementCount + 1;
   }
   const newObject = {
     description: getList,
@@ -109,5 +116,41 @@ document.getElementById('list_row').addEventListener('click', (event) => {
         }
       });
     }
+  }
+});
+
+window.onload = (() => {
+  const getDataLocal = localStorage.getItem('List');
+  const transformData = JSON.parse(getDataLocal);
+  if (transformData !== null) {
+    transformData.forEach((elem) => {
+      const dataStruct = `
+        <div class="list">
+          <input type="checkbox">
+          <p class="editable">${elem.description}</p>
+        </div>
+        <div class="point">
+          <div class="points"></div>
+          <div class="points"></div>
+          <div class="points"></div>
+        </div>
+        <div class="delete_img">
+          <div class="pointv"></div>
+          <div class="pointv"></div>
+          <div class="pointv"></div>
+        </div>
+      `;
+      const createDiv = document.createElement('div');
+      createDiv.classList.add('rows');
+      createDiv.classList.add(elem.index);
+      createDiv.innerHTML = dataStruct;
+      getPrincial.appendChild(createDiv);
+      const newObject = {
+        description: elem.description,
+        completed: false,
+        index: elem.index,
+      };
+      arrayList.push(newObject);
+    });
   }
 });
