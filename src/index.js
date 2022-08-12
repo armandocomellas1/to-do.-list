@@ -101,13 +101,14 @@ document.getElementById('list_row').addEventListener('click', (event) => {
   if (arrayList.length > 0) {
     const checkEvent = event.target.parentElement.className;
     const splitArr = checkEvent.split(' ');
-    const getCharAt = splitArr[1];
+    let getCharAt = splitArr[1];
     const valdiateErr = document.getElementsByClassName(checkEvent)[0];
     if (valdiateErr !== undefined) {
       document.getElementsByClassName(checkEvent)[0].addEventListener('keypress', (event) => {
         const keyCode = event.keyCode ? event.keyCode : event.which;
         if (keyCode === 13) {
           // call click function of the buttonn
+          getCharAt -= 1;
           document.getElementsByClassName(checkEvent)[0].getElementsByClassName('editable')[0].contentEditable = false;
           document.getElementsByClassName(checkEvent)[0].getElementsByClassName('editable')[0].blur();
           document.getElementsByClassName('point')[getCharAt].style.display = 'flex';
