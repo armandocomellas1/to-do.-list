@@ -1,5 +1,4 @@
 export default function status() {
-  const arrayUpdate = [];
   document.getElementById('list_row').addEventListener('click', (event) => {
     if (event.target.className === 'select') {
       const getParentName = event.path[1].children[1];

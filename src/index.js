@@ -125,7 +125,6 @@ document.getElementById('unique').addEventListener('click', () => {
   const getDataLocal = localStorage.getItem('List');
   const parseLocalSt = JSON.parse(getDataLocal);
   const fileredData = parseLocalSt.filter((data) => data.completed !== true);
-  let dataToEr = parseLocalSt.filter((data) => data.completed === true);
   let resCount = 1;
   fileredData.forEach((ind) => {
     ind.index = resCount;
