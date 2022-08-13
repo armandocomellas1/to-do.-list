@@ -20,7 +20,7 @@ To Do list: interactive list
 
 ## Output expecting
 
-- Add/remove/edit/clear lists.
+- Add/remove/edit/clear/save data.
 
 ## Live Demo
 
