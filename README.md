@@ -24,7 +24,7 @@ To Do list: interactive list
 
 ## Live Demo
 
-Live DEMO will be available after code review approved.
+Live DEMO will be available.
 
 ## Getting Started
 
