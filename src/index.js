@@ -137,7 +137,8 @@ document.getElementById('unique').addEventListener('click', () => {
     const getOne = document.getElementById('list_row').childNodes[reCount].childNodes[1].childNodes[1];
     const another = getOne.checked;
     if (another === true) {
-      if (i === 0) {
+      if (reCount === 0) {
+        document.getElementById('list_row').childNodes[reCount].remove();
         reCount = 0;
       } else {
         document.getElementById('list_row').childNodes[reCount].remove();
