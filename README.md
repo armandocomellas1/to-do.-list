@@ -24,7 +24,7 @@ To Do list: interactive list
 
 ## Live Demo
 
-Live DEMO will be available.
+- live Demo: [@armandocomellas1](https://armandocomellas1.github.io/to-do.-list/dist/)
 
 ## Getting Started
 
