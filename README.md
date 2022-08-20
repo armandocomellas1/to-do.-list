@@ -20,7 +20,9 @@ To Do list: interactive list
 
 ## Output expecting
 
-- Add/remove/edit/clear/save data.
+- This is about making a list of task to do.
+- Each task can me marked as completed, add or remove it and even editing.
+- Also added a feature that you can drag and drop to move it into another position.
 
 ## Live Demo
 
