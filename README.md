@@ -18,7 +18,7 @@ To Do list: interactive list
 - WEBPACK
 - (Used Lighthouse, Webhint, and Stylelint as linters)
 
-## Output expecting
+## Descriptino of the project
 
 - This is about making a list of task to do.
 - Each task can me marked as completed, add or remove it and even editing.
