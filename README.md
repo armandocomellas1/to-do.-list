@@ -11,7 +11,7 @@ To Do list: interactive list
 - Use ES6 modules to write modular JavaScript.
 - Use src and dist folders insde each project.
 
-## Built With
+## List of technologies
 
 - HTML5
 - JavaScript
