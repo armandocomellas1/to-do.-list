@@ -2,11 +2,11 @@
 
 To Do list: interactive list
 
-> Hi there! This project is based on creating a UI list with webpack packages
+> Hi there! This project is based on creating a UI list with Webpack packages
 
 - Use semantic HTML tags.
 - Apply best practices in HTML code.
-- Use webpack to bundle JavaScript.
+- Use Webpack to bundle JavaScript.
 - Learn how to use proper ES6 syntax.
 - Use ES6 modules to write modular JavaScript.
 - Use src and dist folders insde each project.
