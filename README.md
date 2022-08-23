@@ -13,9 +13,9 @@ To Do list: interactive list
 
 ## Built With
 
-- HTML
-- JAVASCRIPT
-- WEBPACK
+- HTML5
+- JavaScript
+- Wepack 2
 - (Used Lighthouse, Webhint, and Stylelint as linters)
 
 ## Description of the project
